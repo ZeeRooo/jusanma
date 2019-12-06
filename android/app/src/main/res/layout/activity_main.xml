@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:seekarc="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/dpad_rootview"
+        android:layout_width="wrap_content"
+        android:layout_height="230dp"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_forward"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_alignStart="@id/button_left"
+            android:layout_alignEnd="@id/button_right"
+            android:layout_alignParentTop="true"
+            android:backgroundTint="@color/colorPrimaryTransparency"
+            app:icon="@drawable/ic_arrow_up"
+            app:iconGravity="textStart"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_right"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/button_left"
+            android:backgroundTint="@color/colorPrimaryTransparency"
+            app:icon="@drawable/ic_arrow_right"
+            app:iconGravity="textStart"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_left"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/colorPrimaryTransparency"
+            app:icon="@drawable/ic_arrow_left"
+            app:iconGravity="textStart"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_backward"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_alignStart="@id/button_left"
+            android:layout_alignEnd="@id/button_right"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorPrimaryTransparency"
+            app:icon="@drawable/ic_arrow_down"
+            app:iconGravity="textStart"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="2dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView_seekbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle"
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/velocity_seekbar_rootView"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_below="@+id/dpad_rootview"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView_seekbar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_speed" />
+
+        <SeekBar
+            android:id="@+id/seekbar_velocity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:max="254"
+            android:progressTint="@color/colorPrimary"
+            android:thumbTint="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/distance_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Distancia [cm]: -" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/seekbar_light_rootView"
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:layout_above="@id/velocity_seekbar_rootView"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="25dp"
+        android:layout_toEndOf="@+id/dpad_rootview"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView_seekbar_light"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_speed" />
+
+        <etig.jusanma.VerticalSeekBar
+            android:id="@+id/seekbar_light"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:max="254"
+            android:progressTint="@color/colorPrimary"
+            android:thumbTint="@color/colorPrimary" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/torrent_seekbar_rootview"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/velocity_seekbar_rootView"
+        android:layout_alignParentEnd="true">
+
+        <com.triggertrap.seekarc.SeekArc
+            android:id="@+id/seekbar_torrent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            seekarc:max="360"
+            seekarc:rotation="180"
+            seekarc:startAngle="10"
+            seekarc:sweepAngle="350" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_fire"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:backgroundTint="@color/colorAccentTransparency"
+                app:icon="@drawable/ic_target"
+                app:iconGravity="textStart"
+                app:iconTint="@color/colorAccent"
+                app:strokeColor="@color/colorAccent"
+                app:strokeWidth="2dp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- <ImageView
+        android:id="@+id/imageView_seekbar_torrent"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignStart="@id/seekbar_vertical_torrent"
+        android:layout_alignTop="@id/dpad_rootview"
+        android:layout_alignEnd="@id/seekbar_vertical_torrent"
+        android:layout_toStartOf="@id/torrent_seekbar_rootview"
+        app:srcCompat="@drawable/ic_angle" />
+
+   <etig.jusanma.VerticalSeekBar
+        android:id="@+id/seekbar_vertical_torrent"
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/imageView_seekbar_torrent"
+        android:layout_alignBottom="@id/seekbar_light_rootView"
+        android:layout_marginStart="25dp"
+        android:layout_toStartOf="@id/torrent_seekbar_rootview"
+        android:max="90"
+        android:progressTint="@color/colorPrimary"
+        android:thumbTint="@color/colorPrimary" />-->
+    <RadioGroup
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@id/seekbar_light_rootView"
+        android:layout_marginStart="25dp"
+        android:layout_toStartOf="@id/torrent_seekbar_rootview"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/left_radiobutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/ic_rotate_left" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/right_radiobutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/ic_rotate_right"
+            android:checked="true" />
+    </RadioGroup>
+
+</RelativeLayout>
